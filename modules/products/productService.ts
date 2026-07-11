@@ -1,5 +1,5 @@
 import { Product } from '../../types';
-import { apiClient, isMockMode } from '../../services/apiClient';
+import { apiClient } from '../../services/apiClient';
 
 // --- MOCK DATA (Fallback & Cache) ---
 let MOCK_PRODUCTS: Product[] = [
@@ -58,7 +58,7 @@ let MOCK_PRODUCTS: Product[] = [
 
 export const fetchProducts = async (): Promise<Product[]> => {
   try {
-    if (isMockMode()) throw new Error('Mock mode forced');
+
     const data = await apiClient.get<Product[]>('/products');
     console.log("Connected to Backend: Loaded products");
     return data;
@@ -71,7 +71,7 @@ export const fetchProducts = async (): Promise<Product[]> => {
 
 export const fetchProductById = async (id: string): Promise<Product | undefined> => {
   try {
-    if (isMockMode()) throw new Error('Mock mode forced');
+
     const data = await apiClient.get<Product>(`/products/${id}`);
     return data;
   } catch (e) {
@@ -82,7 +82,7 @@ export const fetchProductById = async (id: string): Promise<Product | undefined>
 
 export const createProduct = async (product: Omit<Product, 'id'>): Promise<Product> => {
   try {
-    if (isMockMode()) throw new Error('Mock mode forced');
+
     return await apiClient.post<Product>('/products', product);
   } catch (e) {
     console.warn('Backend unavailable. Creating product in local mock state.', e);
@@ -108,7 +108,7 @@ export const updateProduct = async (product: Product): Promise<Product> => {
 
 export const deleteProduct = async (id: string): Promise<void> => {
   try {
-    if (isMockMode()) throw new Error('Mock mode forced');
+
     await apiClient.delete(`/products/${id}`);
   } catch (e) {
     console.warn('Backend unavailable. Deleting product from local mock state.', e);
