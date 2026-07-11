@@ -38,9 +38,12 @@ export const ForgotPasswordPage: React.FC = () => {
             <p className="text-gray-500 mb-6">
               If an account with <strong>{email}</strong> exists, we've sent a password reset link. It will expire in 1 hour.
             </p>
-            <p className="text-sm text-gray-400 mb-6">
-              Don't see it? Check your spam folder.
-            </p>
+            <div className="bg-amber-50 border border-amber-200 text-amber-800 text-sm p-3 rounded-lg mb-6 flex items-start gap-2">
+              <span className="text-amber-600 font-bold">⚠️</span>
+              <p>
+                <strong>Don't see it?</strong> Please check your spam or junk folder. It might take a minute or two to arrive.
+              </p>
+            </div>
             <Link
               to="/login"
               className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
