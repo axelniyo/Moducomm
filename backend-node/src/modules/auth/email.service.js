@@ -36,6 +36,8 @@ async function sendPasswordResetEmail(to, name, resetLink) {
 
   const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
 
+  console.log(`[Email Service] Attempting to send password reset email to: ${to}`);
+
   const { data, error } = await resend.emails.send({
     from: `ModuComm <${fromEmail}>`,
     to,
@@ -44,9 +46,11 @@ async function sendPasswordResetEmail(to, name, resetLink) {
   });
 
   if (error) {
-    console.error('Resend API Error:', error);
+    console.error('[Email Service] Failed to send email via Resend:', error);
     throw new Error(error.message);
   }
+
+  console.log(`[Email Service] Successfully sent email to ${to}. Resend ID: ${data?.id}`);
 }
 
 module.exports = { sendPasswordResetEmail };
