@@ -128,7 +128,7 @@ async function forgotPassword(req, res) {
     });
 
     // Build the reset link (points to the frontend)
-    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+    const frontendUrl = process.env.FRONTEND_URL ? process.env.FRONTEND_URL.split(',')[0].trim() : 'http://localhost:3000';
     const resetLink = `${frontendUrl}/reset-password?token=${token}`;
 
     // Send the email
