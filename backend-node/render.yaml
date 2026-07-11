@@ -1,0 +1,47 @@
+# render.yaml — Render Infrastructure-as-Code config
+# Docs: https://render.com/docs/render-yaml-spec
+
+services:
+  - type: web
+    name: moducomm-backend
+    runtime: node
+    region: frankfurt  # Change to: oregon, ohio, singapore, virginia as needed
+
+    # Root directory of the backend inside your repo
+    # If backend-node/ is a standalone repo, remove this line
+    rootDir: backend-node
+
+    buildCommand: npm install
+    startCommand: npm start
+
+    # Free plan — spins down after inactivity (30s cold start)
+    # Upgrade to "starter" ($7/mo) to keep it always-on
+    plan: free
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      # --- Neon PostgreSQL (paste your full connection string in Render dashboard) ---
+      - key: DATABASE_URL
+        sync: false   # set this manually in Render dashboard
+
+      # --- JWT ---
+      - key: JWT_SECRET
+        sync: false   # keep this secret, set in Render dashboard
+      - key: JWT_EXPIRES_IN
+        value: "86400000"
+
+      # --- Stripe ---
+      - key: STRIPE_API_KEY
+        sync: false
+
+      # --- Resend Email API ---
+      - key: RESEND_API_KEY
+        sync: false   # set in Render dashboard
+      - key: RESEND_FROM_EMAIL
+        sync: false   # set in Render dashboard
+
+      # --- CORS: Your Vercel frontend URL ---
+      - key: FRONTEND_URL
+        sync: false   # e.g. https://moducomm.vercel.app

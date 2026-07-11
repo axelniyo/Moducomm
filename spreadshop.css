@@ -1,0 +1,97 @@
+/*
+ * Baoba Custom CSS - Final & Corrected
+ * This version applies all cosmetic styles but removes the specific
+ * layout rules that were breaking the native mobile grid.
+ */
+
+/* --- 1. General Theme & Color Overrides --- */
+:root {
+    --sprd-main-color: #4f46e5;
+    --sprd-main-color-hover: #4338ca;
+    --sprd-main-text-color: #000000;
+    --sprd-secondary-text-color: #64748b;
+    --sprd-link-color: #4f46e5;
+    --sprd-link-color-hover: #4338ca;
+}
+
+/* --- 2. Product Card Styling (Cosmetic Only) --- */
+.sprd-product-list-item {
+    background-color: #FFFFFF !important;
+    border-radius: 0.75rem !important;
+    border: 1px solid #f3f4f6 !important;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+    overflow: hidden !important;
+    transition: box-shadow 0.3s ease-in-out !important;
+    /* The conflicting "display: flex" and other layout rules have been removed. */
+}
+
+.sprd-product-list-item:hover {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
+}
+
+.sprd-product-list-item__image-wrapper {
+    height: 12rem !important;
+    background-color: #e5e7eb !important;
+}
+
+.sprd-product-list-item__info {
+    padding: 1.25rem !important;
+}
+
+/* --- 3. Button Styles --- */
+.sprd-button--primary, .sprd-button.sprd-btn-primary {
+    background-color: #4f46e5 !important;
+    color: #FFFFFF !important;
+    border-color: #4f46e5 !important;
+    border-radius: 0.5rem !important;
+}
+
+.sprd-button--primary:hover, .sprd-button.sprd-btn-primary:hover {
+    background-color: #4338ca !important;
+    border-color: #4338ca !important;
+}
+
+/* --- 4. Header & Text Styles --- */
+.sprd-header__title {
+    visibility: hidden !important;
+}
+
+.sprd-department-filter {
+    position: absolute !important;
+    top: 10px !important;
+    left: 15px !important;
+    z-index: 100 !important;
+}
+
+.sprd-startpage-teaser__caption, .sprd__caption, .sprd__sub-caption, h1, h2, h3 {
+    color: #000000 !important;
+}
+
+.sprd-product-list-item__price {
+    color: #000000 !important;
+    font-weight: bold;
+    font-size: 1.25rem !important;
+}
+
+.sprd-product-list-item__title {
+    color: #000000 !important;
+}
+
+.sprd-product-list-item__title:hover {
+    color: #4f46e5 !important;
+}
+
+.sprd-filter-nav__link.sprd-filter-nav__link--active, .sprd-filter-nav__link:hover {
+    color: #4f46e5 !important;
+    border-bottom-color: #4f46e5 !important;
+}
+
+/* --- 5. Hidden Sections --- */
+#sprd-startpage-trust-elements,
+#sprd-startpage-cyo-intro,
+#sprd-startpage-designs-with-products,
+.sprd-info-footer,
+.sprd-service-footer,
+#buttonSpreadshirt {
+    display: none !important;
+}

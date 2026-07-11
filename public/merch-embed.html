@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merch Store</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; }
+
+        /* --- CSS Overrides --- */
+        .sprd-header__title {
+            visibility: hidden !important;
+        }
+        .sprd-department-filter {
+            position: absolute !important;
+            top: 10px !important;
+            left: 15px !important;
+            z-index: 100 !important;
+        }
+        #sprd-startpage-trust-elements,
+        #sprd-startpage-cyo-intro,
+        #sprd-startpage-designs-with-products,
+        .sprd-info-footer,
+        .sprd-service-footer,
+        #buttonSpreadshirt {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="myShop"></div>
+
+    <script>
+        var spread_shop_config = {
+            shopName: 'baoba',
+            locale: 'us_US',
+            prefix: 'https://baoba.myspreadshop.com',
+            baseId: 'myShop',
+            view: 'grid',
+
+            // --- Configuration for Clean URLs & Initial View ---
+            usePushState: true,
+            updateHistory: true,
+            pushStateBaseUrl: '/',
+            // This forces the shop to always load the homepage first
+            startToken: 'home'
+        };
+    </script>
+
+    <script type="text/javascript"
+            src="https://baoba.myspreadshop.com/shopfiles/shopclient/shopclient.nocache.js"
+            defer>
+    </script>
+
+    <!-- More robust script to send content height to the parent window -->
+    <script>
+        const sendHeight = () => {
+            const height = document.body.scrollHeight;
+            window.parent.postMessage({ type: 'iframeResize', height: height }, '*');
+        };
+        const resizeObserver = new ResizeObserver(sendHeight);
+        resizeObserver.observe(document.body);
+        setInterval(sendHeight, 500);
+        window.onload = sendHeight;
+    </script>
+</body>
+</html>
