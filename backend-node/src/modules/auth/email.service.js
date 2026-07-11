@@ -36,12 +36,17 @@ async function sendPasswordResetEmail(to, name, resetLink) {
 
   const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
 
-  await resend.emails.send({
+  const { data, error } = await resend.emails.send({
     from: `ModuComm <${fromEmail}>`,
     to,
     subject: 'Reset your ModuComm password',
     html,
   });
+
+  if (error) {
+    console.error('Resend API Error:', error);
+    throw new Error(error.message);
+  }
 }
 
 module.exports = { sendPasswordResetEmail };
